@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Crear Usuario</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="mb-4">Crear Nuevo Usuario</h1>
+    <a href="/admin/usuarios" class="btn btn-link mb-4">← Volver al listado</a>
+
+    <% if (error) { %>
+      <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+
+    <form id="formUsuario" action="/admin/usuarios/nuevo" method="POST" novalidate>
+      <div class="form-group mb-3">
+        <label>Nombre</label>
+        <input type="text" name="nombre" id="nombre" class="form-control" required>
+      </div>
+      <div class="form-group mb-3">
+        <label>Email</label>
+        <input type="email" name="email" id="email" class="form-control" required>
+      </div>
+      <div class="form-group mb-3">
+        <label>Contraseña</label>
+        <input type="password" name="password" id="password" class="form-control" required>
+      </div>
+      <div class="form-group mb-3">
+        <label>Cédula</label>
+        <input type="text" name="ci" id="ci" class="form-control" required>
+      </div>
+      <div class="form-group mb-4">
+        <label>Roles</label><br>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="roles" value="E" id="rolAlumno">
+          <label class="form-check-label" for="rolAlumno">Alumno</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="roles" value="P" id="rolProfesor">
+          <label class="form-check-label" for="rolProfesor">Profesor</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="roles" value="A" id="rolAdmin">
+          <label class="form-check-label" for="rolAdmin">Admin</label>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success">Crear Usuario</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('formUsuario').addEventListener('submit', function (e) {
+      const nombre = document.getElementById('nombre').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const ci = document.getElementById('ci').value.trim();
+      const roles = Array.from(document.querySelectorAll('input[name="roles"]:checked')).map(cb => cb.value);
+
+      if (!nombre || !email || !password || !ci || roles.length === 0) {
+        alert("Todos los campos son obligatorios, incluido al menos un rol.");
+        e.preventDefault();
+      }
+    });
+  </script>
+</body>
+</html>

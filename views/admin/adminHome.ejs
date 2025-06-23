@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vista del Admin</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/lib/fontawesome/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <%- include("../partials/navbar") %>
+
+    <% if (esAlumno) { %>
+    <div class="alert alert-info text-center">Estás registrado como Alumno 🎓</div>
+    <% } %>
+    <% if (esProfesor) { %>
+    <div class="alert alert-warning text-center">Estás registrado como Profesor 👨‍🏫</div>
+    <% } %>
+    <% if (esAdmin) { %>
+    <div class="alert alert-success text-center">Acceso administrativo habilitado 🛠</div>
+    <% } %>
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Vista del Admin</h1>
+        <div class="text-center mb-4">
+            <p>Esta es la vista a la cuál se debe llegar luego de haberse logueado correctamente el admin</p>
+        </div>
+
+        <!-- Menú de navegación para funcionalidades -->
+        <div class="row justify-content-center">
+            <!-- Ver listado de Categorías -->
+            <div class="col-md-4 mb-3">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-tags fa-2x mb-3"></i>
+                        <h5 class="card-title">Ver Categorías</h5>
+                        <p class="card-text">Listado de categorías con su cantidad de cursos.</p>
+                        <a href="/admin/categorias" class="btn btn-warning">Ir a Categorías</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Asignar cursos a Profesores -->
+            <div class="col-md-4 mb-3">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-chalkboard-teacher fa-2x mb-3"></i>
+                        <h5 class="card-title">Asignar Profesor</h5>
+                        <p class="card-text">Asignar un profesor a un curso existente.</p>
+                        <a href="/admin/asignar-profesor" class="btn btn-secondary">Ir a Asignar Profesor</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Ver inscripciones de alumnos -->
+            <div class="col-md-4 mb-3">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-list fa-2x mb-3"></i>
+                        <h5 class="card-title">Ver Inscripciones</h5>
+                        <p class="card-text">Listado de todas las inscripciones realizadas por los alumnos.</p>
+                        <a href="/admin/inscripciones" class="btn btn-success">Ir al Listado</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ver Cursos -->           
+            <div class="col-md-4 mb-4">
+                <div class="p-4 border rounded text-center">
+                    <h4 class="fw-bold">Ver Cursos</h4>
+                    <p>Listado de todos los cursos registrados en el sistema.</p>
+                    <a href="/admin/cursos" class="btn btn-info fw-bold">Ir a Cursos</a>
+                </div>
+            </div>
+
+            <!-- Ver listado de Usuarios -->
+            <div class="col-md-4 mb-3">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-users fa-2x mb-3"></i>
+                        <h5 class="card-title">Ver Usuarios</h5>
+                        <p class="card-text">Listado completo de usuarios con sus cursos como alumno y profesor.</p>
+                        <a href="/admin/usuarios" class="btn btn-info">Ir al Listado de Usuarios</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Crear nuevo Curso -->
+            <div class="col-md-4 mb-3">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-plus-circle fa-2x mb-3 text-success"></i>
+                        <h5 class="card-title">Crear Curso</h5>
+                        <p class="card-text">Registrar un nuevo curso en la plataforma.</p>
+                        <a href="/admin/cursos/nuevo" class="btn btn-success">Nuevo Curso</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Ver Estadísticas Generales -->
+            <div class="col-md-4 mb-3">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                <i class="fas fa-chart-bar fa-2x mb-3 text-primary"></i>
+                <h5 class="card-title">Ver Estadísticas</h5>
+                <p class="card-text">Visualizar estadísticas generales del sitio.</p>
+                <a href="/admin/estadisticas" class="btn btn-primary">Ir a Estadísticas</a>
+                </div>
+            </div>
+            </div>      
+            <!-- Tarjeta Unificada: Ver Asignaciones + Asignar Profesor -->
+            <div class="col-md-4 mb-3">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="fas fa-users fa-2x mb-3"></i>
+                        <h5 class="card-title">Asignaciones de Profesores</h5>
+                        <p class="card-text">Ver todas las asignaciones actuales o asignar un nuevo profesor a un curso.</p>
+      
+            <!-- Botón: Ver asignaciones -->
+            <a href="/admin/asignaciones-profesor" class="btn btn-warning mb-2">Ver Asignaciones</a>
+
+    </div>
+  </div>
+</div>
+
+
+    <%- include("../partials/footer") %>
+</body>
+
+</html>

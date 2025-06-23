@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Listado de Cursos</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <%- include('../../partials/navbar', { usuario }) %>
+
+  <div class="container mt-5">
+    <h1 class="mb-4">Listado de Cursos</h1>
+
+    <% if (cursos.length === 0) { %>
+      <div class="alert alert-warning">No hay cursos registrados.</div>
+    <% } else { %>
+      <div class="row">
+        <% cursos.forEach(curso => { %>
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+              <img src="/assets/cursos/<%= curso.imagen ? curso.imagen : 'generica.jpg' %>" class="card-img-top" alt="Imagen del curso">
+              <div class="card-body">
+                <h5 class="card-title"><%= curso.nombre %></h5>
+                <p class="card-text"><strong>Precio:</strong> <%= curso.precio %> Gs</p>
+                <p class="card-text"><strong>Estrellas:</strong> 
+                  <% for (let i = 0; i < curso.estrellas; i++) { %>
+                    ⭐
+                  <% } %>
+                </p>
+                <a href="/admin/cursos/<%= curso.id_curso %>/ver" class="btn btn-primary w-100">Ver Detalles</a>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+    
+    <a href="/admin/home" class="btn btn-secondary mt-4">Volver al Panel</a>
+
+  </div>
+
+    <%- include('../../partials/footer') %>
+
+  <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

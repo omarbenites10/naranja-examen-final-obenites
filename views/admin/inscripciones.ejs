@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Listado de Inscripciones</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/lib/fontawesome/css/all.min.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Navbar -->
+  <%- include("../partials/navbar") %>
+
+  <div class="container mt-5">
+
+    <!-- ✅ Botón de volver al Panel de Admin (arriba) -->
+    <div class="mb-3">
+      <a href="/admin/home" style="color: #4cbecf; font-size: 1.1rem; text-decoration: none;">
+        ← Volver al Panel de Admin
+      </a>
+    </div>
+
+    <h1 class="text-center mb-4">Listado de Inscripciones</h1>
+
+    <!-- ✅ Botón para inscribir alumno -->
+    <div class="mb-3 text-end">
+      <a href="/admin/inscripciones/nueva" class="btn btn-primary">
+        <i class="fas fa-user-plus"></i> Inscribir Alumno
+      </a>
+    </div>
+
+    <% if (inscripciones.length > 0) { %>
+      <table class="table table-striped table-bordered">
+        <thead class="table-light">
+          <tr>
+            <th>ID Inscripción</th>
+            <th>Nombre Alumno</th>
+            <th>Email</th>
+            <th>ID Curso</th>
+            <th>Nombre Curso</th>
+            <th>Fecha de Inscripción</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% inscripciones.forEach(i => { %>
+            <tr>
+              <td><%= i.id_inscripcion %></td>
+              <td><%= i.nombre_alumno %></td>
+              <td><%= i.email_usuario %></td>
+              <td><%= i.id_curso %></td>
+              <td><%= i.nombre_curso %></td>
+              <td><%= i.fecha_inscripcion %></td>
+              <td>
+                <form action="/admin/inscripciones/eliminar/<%= i.id_inscripcion %>" method="POST" style="display:inline;" onsubmit="return confirm('¿Confirmar desinscripción?');">
+                  <button type="submit" class="btn btn-danger btn-sm">Desinscribir</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <div class="alert alert-warning text-center">
+        No hay inscripciones registradas.
+      </div>
+    <% } %>
+
+  </div>
+
+  <!-- Footer -->
+  <%- include("../partials/footer") %>
+</body>
+</html>

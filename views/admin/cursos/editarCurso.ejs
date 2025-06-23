@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Editar Curso</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1>Editar Curso: <%= curso.nombre %></h1>
+
+    <form action="/admin/cursos/<%= curso.id_curso %>/editar" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="imagenOriginal" value="<%= curso.imagen %>">
+
+      <div class="mb-3">
+        <label>Nombre:</label>
+        <input type="text" class="form-control" name="nombre" value="<%= curso.nombre %>" required>
+      </div>
+
+      <div class="mb-3">
+        <label>Precio:</label>
+        <input type="number" class="form-control" name="precio" value="<%= curso.precio %>" required>
+      </div>
+
+      <div class="mb-3">
+        <label>Estrellas:</label>
+        <input type="number" class="form-control" name="estrellas" min="1" max="5" value="<%= curso.estrellas %>" required>
+      </div>
+
+      <div class="mb-3">
+        <label>Imagen actual:</label><br>
+        <img src="/assets/cursos/<%= curso.imagen ? curso.imagen : 'generica.jpg' %>" width="150">
+      </div>
+
+      <div class="mb-3">
+        <label>Nueva Imagen:</label>
+        <input type="file" class="form-control" name="imagen">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    </form>
+
+    <a href="/admin/cursos/<%= curso.id_curso %>/ver" class="btn btn-secondary mt-3">Cancelar</a>
+
+      <%- include('../../partials/footer') %>
+  </div>
+</body>
+</html>

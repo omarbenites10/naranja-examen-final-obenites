@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Nuevo Curso</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  <style>
+    .star-rating .fa-star {
+      cursor: pointer;
+      color: #ccc;
+    }
+    .star-rating .fa-star.checked {
+      color: #ffc107;
+    }
+  </style>
+</head>
+<body>
+  <%- include('../../partials/navbar') %>
+
+  <div class="container mt-5">
+    <h1 class="mb-4">Crear Nuevo Curso</h1>
+
+    <% if (errores && errores.length > 0) { %>
+      <div class="alert alert-danger">
+        <ul>
+          <% errores.forEach(error => { %>
+            <li><%= error %></li>
+          <% }) %>
+        </ul>
+      </div>
+    <% } %>
+
+    <form action="/admin/cursos" method="POST" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre del curso:</label>
+        <input type="text" class="form-control" name="nombre" id="nombre" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="id_categoria" class="form-label">Categoría:</label>
+        <select class="form-select" name="id_categoria" id="id_categoria" required>
+          <% categorias.forEach(cat => { %>
+            <option value="<%= cat.id_categoria %>"><%= cat.nombre %></option>
+          <% }) %>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="precio" class="form-label">Precio:</label>
+        <input type="number" class="form-control" name="precio" id="precio" step="0.01" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Estrellas:</label>
+        <div class="star-rating">
+          <% for (let i = 1; i <= 5; i++) { %>
+            <i class="fa fa-star" data-value="<%= i %>"></i>
+          <% } %>
+        </div>
+        <input type="hidden" name="estrellas" id="estrellas" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="imagen" class="form-label">Imagen del curso (JPG o PNG):</label>
+        <input type="file" class="form-control" name="imagen" id="imagen" accept=".jpg,.jpeg,.png">
+      </div>
+
+      <button type="submit" class="btn btn-success">Guardar Curso</button>
+    </form>
+  </div>
+
+  <%- include('../../partials/footer') %>
+
+  <script>
+    const stars = document.querySelectorAll('.star-rating .fa-star');
+    const estrellasInput = document.getElementById('estrellas');
+
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        const rating = parseInt(star.dataset.value);
+        estrellasInput.value = rating;
+
+        stars.forEach(s => s.classList.remove('checked'));
+        for (let i = 0; i < rating; i++) {
+          stars[i].classList.add('checked');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

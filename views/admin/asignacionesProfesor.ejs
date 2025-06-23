@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Asignaciones de Profesores</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+  <div class="container mt-5">
+    <h1>Asignaciones de Profesores</h1>
+
+    <% if (msg) { %>
+      <div class="alert alert-success"><%= msg %></div>
+    <% } %>
+
+    <div class="mb-4 text-end">
+      <a href="/admin/asignar-profesor" class="btn btn-success">
+        <i class="fas fa-user-plus me-2"></i>Asignar nuevo Profesor
+      </a>
+    </div>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Nombre del Profesor</th>
+          <th>ID del Curso</th>
+          <th>Nombre del Curso</th>
+          <th>ID del Profesor</th>
+          <th>¿Publicado?</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% asignaciones.forEach(asignacion => { %>
+          <tr class="asignacion-item">
+            <td><%= asignacion.nombre_profesor %></td>
+            <td><%= asignacion.id_curso %></td>
+            <td><%= asignacion.nombre %></td>
+            <td><%= asignacion.email_usuario %></td>
+            <td><%= asignacion.publicado %></td>
+            <td>
+              <a href="/auth/curso/<%= asignacion.id_curso %>" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Ver Curso</a>
+              <form action="/admin/asignaciones-profesor/<%= asignacion.id_asignacion %>/eliminar" method="POST" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que quieres eliminar esta asignación?');">
+                <button type="submit" class="btn btn-danger btn-sm">Quitar</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <%- include('../partials/footer') %>
+</body>
+</html>

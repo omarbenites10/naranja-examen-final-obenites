@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Categoría</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <%- include("../../partials/navbar") %>
+
+    <div class="container mt-5">
+      <h1 class="text-center mb-4">Editar Categoría</h1>
+
+      <% if (error) { %>
+        <div class="alert alert-danger text-center">
+          <%= error %>
+        </div>
+        <% } %>
+
+          <form action="/admin/categorias/editar/<%= categoria.id_categoria %>" method="POST"
+            enctype="multipart/form-data">
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre de la categoría</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" value="<%= categoria.nombre %>"
+                required>
+            </div>
+            <% if (categoria.imagen) { %>
+              <div class="mb-3">
+                <label>Imagen actual:</label><br>
+                <img src="/categorias/<%= categoria.imagen %>" alt="Imagen actual" width="100">
+              </div>
+              <% } %>
+
+
+                <div class="mb-3">
+                  <label for="imagen">Nueva imagen (opcional)</label>
+                  <input type="file" name="imagen" class="form-control" accept=".jpg,.jpeg,.png,.webp">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                <a href="/admin/categorias" class="btn btn-secondary">Cancelar</a>
+          </form>
+    </div>
+
+    <%- include("../../partials/footer") %>
+</body>
+
+</html>

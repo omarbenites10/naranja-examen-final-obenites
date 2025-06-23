@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cambiar Contraseña</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+
+  <div class="container mt-5">
+    <h2 class="mb-4">Cambiar Contraseña</h2>
+
+    <% if (errores && errores.length > 0) { %>
+      <div class="alert alert-danger">
+        <ul>
+          <% errores.forEach(e => { %>
+            <li><%= e %></li>
+          <% }) %>
+        </ul>
+      </div>
+    <% } %>
+
+    <form method="POST" action="/auth/cambiar-contrasena">
+      <div class="mb-3">
+        <label>Contraseña Actual</label>
+        <input type="password" class="form-control" name="contrasenaActual" required>
+      </div>
+      <div class="mb-3">
+        <label>Nueva Contraseña</label>
+        <input type="password" class="form-control" name="nuevaContrasena" required>
+      </div>
+      <div class="mb-3">
+        <label>Repetir Nueva Contraseña</label>
+        <input type="password" class="form-control" name="repetirContrasena" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Cambiar Contraseña</button>
+    </form>
+  </div>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>

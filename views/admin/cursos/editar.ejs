@@ -1,0 +1,24 @@
+<form action="/admin/cursos/<%= curso.id_curso %>/editar" method="POST" enctype="multipart/form-data">
+  <div class="mb-3">
+    <label for="nombre" class="form-label">Nombre:</label>
+    <input type="text" class="form-control" id="nombre" name="nombre" value="<%= curso.nombre %>" required>
+  </div>
+
+  <!-- Mostrar imagen actual -->
+  <div class="mb-3">
+    <label class="form-label">Imagen actual:</label><br>
+    <% if (curso.tieneImagen) { %>
+      <img src="/assets/cursos/<%= curso.id_curso %>.jpg" alt="Imagen del curso" style="max-width: 200px;">
+    <% } else { %>
+      <img src="/assets/cursos/default.jpg" alt="Sin imagen" style="max-width: 200px;">
+    <% } %>
+  </div>
+
+  <!-- Subida nueva imagen -->
+  <div class="mb-3">
+    <label for="imagen" class="form-label">Nueva imagen (opcional):</label>
+    <input type="file" class="form-control" id="imagen" name="imagen" accept=".jpg,.jpeg,.png">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Guardar cambios</button>
+</form>

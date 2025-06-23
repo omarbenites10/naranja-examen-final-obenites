@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Términos y Condiciones</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <%- include('../partials/navbar', { usuario }) %>
+
+  <div class="container py-5">
+    <h1 class="mb-4 text-primary">Términos y Condiciones</h1>
+    <p class="mb-3">
+      Bienvenido a <%= projectName %>. Al acceder a nuestra plataforma, aceptás cumplir con los siguientes términos y condiciones de uso, que junto con nuestra política de privacidad, rigen la relación entre vos y nuestra empresa.
+    </p>
+
+    <h4>1. Uso del Sitio</h4>
+    <p>
+      El contenido de las páginas de este sitio web es para tu información general y uso únicamente. Está sujeto a cambios sin previo aviso.
+    </p>
+
+    <h4>2. Responsabilidades del Usuario</h4>
+    <p>
+      El uso de cualquier información o materiales en este sitio web es completamente bajo tu propio riesgo, por lo cual no seremos responsables. Será tu responsabilidad asegurarte de que cualquier producto, servicio o información disponible a través de este sitio cumpla con tus requisitos específicos.
+    </p>
+
+    <h4>3. Propiedad Intelectual</h4>
+    <p>
+      Este sitio web contiene material que es propiedad de o está licenciado a nosotros. Este material incluye, pero no se limita a, diseño, layout, apariencia y gráficos.
+    </p>
+
+    <h4>4. Modificaciones</h4>
+    <p>
+      Nos reservamos el derecho de modificar estos términos en cualquier momento. Cualquier cambio será efectivo inmediatamente después de su publicación.
+    </p>
+
+    <h4>5. Contacto</h4>
+    <p>
+      Si tenés alguna pregunta sobre estos términos y condiciones, podés contactarnos a través del formulario de contacto o escribiendo a info@ejemplo.com.
+    </p>
+  </div>
+
+  <%- include('../partials/footer') %>
+
+  <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

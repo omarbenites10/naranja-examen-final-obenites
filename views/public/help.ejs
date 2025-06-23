@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Ayuda - <%= projectName %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+  <link href="/lib/animate/animate.min.css" rel="stylesheet">
+  <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <%- include('../partials/navbar', { usuario }) %>
+
+  <!-- Encabezado -->
+  <div class="container-fluid bg-primary py-5 mb-5 page-header">
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 text-center">
+          <h1 class="display-3 text-white animated slideInDown">Ayuda</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de Ayuda -->
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <h2 class="mb-4 text-primary">¿Necesitás ayuda?</h2>
+        <p class="mb-4">En esta sección encontrarás información útile para resolver las dudas más comunes sobre nuestra plataforma.</p>
+
+        <h5 class="text-secondary">1. ¿Cómo me registro en la plataforma?</h5>
+        <p>Hacé clic en "Iniciar sesión" y luego seleccioná la opción "Crear cuenta nueva". Completá los datos solicitados y seguí las instrucciones.</p>
+
+        <h5 class="text-secondary">2. ¿Cómo me inscribo en un curso?</h5>
+        <p>Una vez logueado, podés buscar cursos desde el botón "Buscar Cursos" y hacer clic en "Inscribirme" dentro del detalle de cada curso publicado.</p>
+
+        <h5 class="text-secondary">3. ¿Qué hago si olvidé mi contraseña?</h5>
+        <p>Contactá con nuestro equipo a través del formulario de <a href="/public/contact">Contacto</a> para que podamos ayudarte a restablecerla.</p>
+
+        <h5 class="text-secondary">4. ¿Cómo contacto a un profesor?</h5>
+        <p>Dentro del detalle del curso al que estás inscripto, encontrarás información sobre el docente responsable. Podrás contactarlo desde allí.</p>
+
+        <h5 class="text-secondary">5. ¿Cómo doy mi opinión o sugerencia?</h5>
+        <p>Valoramos tu opinión. Escribinos mediante el formulario de <a href="/public/contact">Contacto</a> con tus sugerencias o comentarios.</p>
+      </div>
+    </div>
+  </div>
+
+  <%- include('../partials/footer', { projectName }) %>
+</body>
+
+</html>

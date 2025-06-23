@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Listado de Categorías</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <%- include("../partials/navbar") %>
+
+    <div class="container mt-5">
+      <h1 class="text-center mb-4">Categorías con cantidad de cursos</h1>
+
+      <% if (typeof error !=='undefined' && error) { %>
+        <div class="alert alert-danger text-center">
+          <%= error %>
+        </div>
+        <% } %>
+
+          <a href="/admin/categorias/nueva" class="btn btn-success mb-3">Crear nueva categoría</a>
+
+          <table class="table table-bordered table-striped">
+
+            <thead class="table-dark">
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Imagen</th>
+                <th>Cantidad de Cursos</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% categorias.forEach(cat=> { %>
+                <tr>
+                  <td>
+                    <%= cat.id_categoria %>
+                  </td>
+                  <td>
+                    <%= cat.nombre %>
+                  </td>
+                  <td>
+                    <img src="/categorias/<%= cat.imagen %>" alt="Imagen categoría" width="60"
+                      onerror="this.onerror=null;this.src='/categorias/default.jpg';">
+                  </td>
+                  <td>
+                    <%= cat.cantidad_cursos %>
+                  </td>
+
+                  <td>
+                    <a href="/admin/categorias/editar/<%= cat.id_categoria %>"
+                      class="btn btn-primary btn-sm me-1">Editar</a>
+
+                    <form action="/admin/categorias/eliminar/<%= cat.id_categoria %>" method="POST"
+                      style="display:inline;"
+                      onsubmit="return confirm('¿Estás seguro que querés eliminar esta categoría?')">
+                      <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                  </td>
+                </tr>
+                <% }) %>
+            </tbody>
+          </table>
+
+          <a href="/admin/home" class="btn btn-secondary mt-3">Volver al Home</a>
+    </div>
+
+    <%- include("../partials/footer") %>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+    <%- include('../../partials/navbar') %>
+
+    <div class="container mt-5">
+        <h2 class="mb-4">Iniciar sesión como alumno o profesor</h2>
+
+        <% if (errores && errores.length > 0) { %>
+            <div class="alert alert-danger">
+                <ul>
+                    <% errores.forEach(function(error) { %>
+                        <li><%= error %></li>
+                    <% }); %>
+                </ul>
+            </div>
+        <% } %> 
+
+        <% if (typeof error !== 'undefined' && error) { %>
+            <div class="alert alert-danger">
+                <%= error %>
+            </div>
+        <% } %>
+
+        <form method="POST" action="/auth/login">
+            <div class="row g-3">
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Tu Email" value="<%= oldData?.email || '' %>" required>
+                        <label for="email">Email</label>
+                        <div class="invalid-feedback">Por favor, ingresa un email válido.</div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+                        <label for="contrasena">Contraseña</label>
+                        <div class="invalid-feedback">La contraseña es obligatoria.</div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary w-100 py-3" type="submit">Iniciar sesión</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="text-center mt-3">
+            <a href="/public/admin-login" class="btn btn-outline-danger">Acceso Admin</a>
+        </div>
+    </div>
+
+    <%- include('../../partials/footer') %>
+</body>
+</html>

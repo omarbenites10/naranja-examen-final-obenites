@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Cursos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Estilos y librerías -->
+    <link href="/img/favicon.ico" rel="icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <%- include('../partials/navbar') %>
+
+    <div class="container py-5">
+        <div class="text-center mb-4">
+            <h2 class="text-primary">Mis Cursos</h2>
+            <p>Estos son los cursos en los que estás inscripto.</p>
+        </div>
+
+        <% if (mensaje) { %>
+            <div class="alert alert-info text-center">
+                <%= mensaje %>
+            </div>
+        <% } %>
+
+        <% if (cursos && cursos.length > 0) { %>
+            <div class="row g-4">
+                <% cursos.forEach(curso => { %>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="course-item bg-light border">
+                            <div class="p-4 text-center">
+                                <h5 class="mb-3"><%= curso.nombre %></h5>
+                                <p><strong>Precio:</strong> <%= curso.precio %> Gs.</p>
+                                <p><strong>Estrellas:</strong> <%= curso.estrellas %></p>
+                                <p><strong>Publicado:</strong> <%= curso.publicado === 'S' ? 'Sí' : 'No' %></p>
+                            </div>
+                            <div class="d-flex border-top justify-content-center">
+                                <a href="/auth/curso/<%= curso.id_curso %>" class="btn btn-primary m-2">Ver curso</a>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        <% } %>
+    </div>
+
+    <%- include('../partials/footer') %>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/lib/wow/wow.min.js"></script>
+    <script src="/lib/easing/easing.min.js"></script>
+    <script src="/lib/waypoints/waypoints.min.js"></script>
+    <script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Nueva Categoría</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <%- include("../../partials/navbar") %>
+
+    <div class="container mt-5">
+      <h1 class="mb-4 text-center">Crear Nueva Categoría</h1>
+
+      <% if (error) { %>
+        <div class="alert alert-danger">
+          <%= error %>
+        </div>
+        <% } %>
+
+          <form action="/admin/categorias" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre de la categoría</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
+            <div class="mb-3">
+              <label for="imagen">Imagen</label>
+              <input type="file" name="imagen" class="form-control" accept=".jpg,.jpeg,.png,.webp">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Crear</button>
+            <a href="/admin/categorias" class="btn btn-secondary">Cancelar</a>
+          </form>
+    </div>
+
+    <%- include("../../partials/footer") %>
+</body>
+
+</html>

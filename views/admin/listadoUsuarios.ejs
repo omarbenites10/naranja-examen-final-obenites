@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Listado de Usuarios</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="mb-4">Listado de Usuarios</h1>
+
+    <div class="mb-2">
+      <a href="/admin/home" class="btn btn-link p-0">← Volver al Panel de Admin</a>
+    </div>
+    <div class="mb-4">
+      <a href="/admin/usuarios/nuevo" class="btn btn-primary">Crear Usuario</a>
+    </div>
+
+    <% if (typeof exito !== 'undefined') { %>
+      <div class="alert alert-success">
+        ¡Usuario creado exitosamente!
+      </div>
+    <% } %>
+
+    <table class="table table-bordered table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Cursos como Alumno</th>
+          <th>Cursos como Profesor</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (usuarios.length === 0) { %>
+          <tr>
+            <td colspan="6">No hay usuarios registrados.</td>
+          </tr>
+        <% } else { %>
+          <% usuarios.forEach(usuario => { %>
+            <tr>
+              <td><%= usuario.nombre %></td>
+              <td><%= usuario.email_usuario %></td>
+              <td><%= usuario.cursosAlumno %></td>
+              <td><%= usuario.cursosProfesor %></td>
+              <td>
+                <% if (usuario.activo === 1) { %>
+                  <span class="text-success">Activo</span>
+                <% } else { %>
+                  <span class="text-danger">Inactivo</span>
+                <% } %>
+              </td>
+              <td>
+                <a href="/admin/usuarios/<%= usuario.email_usuario %>/editar" class="btn btn-warning btn-sm">Editar</a>
+              </td>
+            </tr>
+          <% }) %>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

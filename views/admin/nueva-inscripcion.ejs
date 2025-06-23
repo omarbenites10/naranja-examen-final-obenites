@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Inscribir Alumno</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/lib/fontawesome/css/all.min.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <%- include("../partials/navbar") %>
+
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow">
+          <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Inscribir Alumno a un Curso</h4>
+          </div>
+          <div class="card-body">
+
+            <% if (error) { %>
+              <div class="alert alert-danger"><%= error %></div>
+            <% } %>
+
+            <form method="POST" action="/admin/inscripciones">
+              <div class="mb-3">
+                <label for="email_usuario" class="form-label">Alumno</label>
+                <select name="email_usuario" class="form-select" required>
+                  <option value="">Seleccione un alumno</option>
+                  <% alumnos.forEach(a => { %>
+                    <option value="<%= a.email_usuario %>"><%= a.nombre %> (<%= a.email_usuario %>)</option>
+                  <% }) %>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="id_curso" class="form-label">Curso</label>
+                <select name="id_curso" class="form-select" required>
+                  <option value="">Seleccione un curso</option>
+                  <% cursos.forEach(c => { %>
+                    <option value="<%= c.id_curso %>"><%= c.nombre %></option>
+                  <% }) %>
+                </select>
+              </div>
+
+              <div class="d-flex justify-content-between">
+                <a href="/admin/inscripciones" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-success">Inscribir</button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include("../partials/footer") %>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Buscar Cursos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/lib/animate/animate.min.css" rel="stylesheet">
+  <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <%- include("partials/navbar", { usuario: usuario }) %>
+
+  <!-- Buscar Cursos -->
+  <div class="container py-5">
+    <div class="text-center mb-4">
+      <h1 class="display-5 text-primary wow fadeInDown">Buscar Cursos</h1>
+      <p class="lead wow fadeInUp" data-wow-delay="0.2s">Encontrá los cursos que más te interesan</p>
+    </div>
+
+    <form action="/auth/buscar" method="GET" class="wow fadeInUp" data-wow-delay="0.3s">
+      <div class="input-group mb-5">
+        <input type="text" name="nombre" class="form-control form-control-lg" placeholder="Nombre del curso" required>
+        <button class="btn btn-primary btn-lg" type="submit">
+          <i class="fas fa-search me-1"></i> Buscar
+        </button>
+      </div>
+    </form>
+
+    <% if (cursos && cursos.length > 0) { %>
+      <div class="row g-4">
+        <% cursos.forEach(curso => { %>
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="course-item bg-light border rounded p-3">
+              <div class="text-center p-3 pb-1">
+                <h4 class="mb-2"><%= curso.nombre %></h4>
+                <p class="mb-1">Precio: Gs <%= curso.precio %></p>
+                <p class="mb-1">Estrellas: <%= curso.estrellas %> ⭐</p>
+                <a href="/auth/curso/<%= curso.id_curso %>" class="btn btn-outline-primary mt-3">Ver Curso</a>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } else if (cursos) { %>
+      <div class="alert alert-warning text-center wow fadeInUp" data-wow-delay="0.3s">
+        No se encontraron cursos con ese nombre.
+      </div>
+    <% } %>
+  </div>
+
+  <%- include("partials/footer") %>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="/lib/wow/wow.min.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

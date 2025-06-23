@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de usuario</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <div class="container mt-5">
+        <h2 class="mb-4">Registrarse</h2>
+
+        <% if (errores && errores.length > 0) { %>
+            <div class="alert alert-danger">
+                <ul>
+                    <% errores.forEach(function(error) { %>
+                        <li><%= error %></li>
+                    <% }); %>
+                </ul>
+            </div>
+        <% } %>
+
+        <form method="POST" action="/public/registro" novalidate>
+            <div class="row g-3">
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre completo" value="<%= oldData?.nombre || '' %>" required>
+                        <label for="nombre">Nombre completo</label>
+                        <div class="invalid-feedback">Este campo es obligatorio.</div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="ci" name="ci" placeholder="Cédula de Identidad" value="<%= oldData?.ci || '' %>" required>
+                        <label for="ci">Cédula de Identidad</label>
+                        <div class="invalid-feedback">Este campo es obligatorio.</div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Correo electrónico" value="<%= oldData?.email || '' %>" required>
+                        <label for="email">Correo electrónico</label>
+                        <div class="invalid-feedback">Ingrese un email válido.</div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+                        <label for="contrasena">Contraseña</label>
+                        <div class="invalid-feedback">Mínimo 6 caracteres.</div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="repetirContrasena" name="repetirContrasena" placeholder="Repetir contraseña" required>
+                        <label for="repetirContrasena">Repetir contraseña</label>
+                        <div class="invalid-feedback">Las contraseñas deben coincidir.</div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-success w-100 py-3" type="submit">Registrarme</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="text-center mt-3">
+            <a href="/auth/login" class="btn btn-outline-primary">Ya tengo cuenta</a>
+        </div>
+    </div>
+
+    <%- include('../partials/footer') %>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function (event) {
+          let valido = true;
+
+          // Nombre completo
+          const nombre = form.nombre.value.trim();
+          if (!nombre) {
+            form.nombre.classList.add('is-invalid');
+            valido = false;
+          } else {
+            form.nombre.classList.remove('is-invalid');
+          }
+
+          // CI
+          const ci = form.ci.value.trim();
+          if (!ci) {
+            form.ci.classList.add('is-invalid');
+            valido = false;
+          } else {
+            form.ci.classList.remove('is-invalid');
+          }
+
+          // Email
+          const email = form.email.value.trim();
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!email || !emailPattern.test(email)) {
+            form.email.classList.add('is-invalid');
+            valido = false;
+          } else {
+            form.email.classList.remove('is-invalid');
+          }
+
+          // Contraseña
+          const pass = form.contrasena.value;
+          if (!pass || pass.length < 6) {
+            form.contrasena.classList.add('is-invalid');
+            valido = false;
+          } else {
+            form.contrasena.classList.remove('is-invalid');
+          }
+
+          // Repetir Contraseña
+          const pass2 = form.repetirContrasena.value;
+          if (pass !== pass2 || !pass2) {
+            form.repetirContrasena.classList.add('is-invalid');
+            valido = false;
+          } else {
+            form.repetirContrasena.classList.remove('is-invalid');
+          }
+
+          // Si no es válido, evitar submit
+          if (!valido) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+        });
+
+        // Remover validación al tipear
+        ['nombre', 'ci', 'email', 'contrasena', 'repetirContrasena'].forEach(campo => {
+          form[campo].addEventListener('input', function () {
+            this.classList.remove('is-invalid');
+          });
+        });
+      });
+    </script>
+</body>
+</html>

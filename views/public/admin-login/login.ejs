@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Acceso Administrador</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('../../partials/navbar', { usuario: typeof usuario !== 'undefined' ? usuario : null, projectName: 'Mi Plataforma' }) %>
+
+  <div class="container mt-5">
+    <h2 class="mb-4 text-center">Iniciar sesión como Administrador</h2>
+
+    <% if (error) { %>
+      <div class="alert alert-danger text-center"><%= error %></div>
+    <% } %>
+
+    <form method="POST" action="/public/admin-login">
+      <div class="row g-3">
+        <div class="col-12">
+          <div class="form-floating">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Correo electrónico" required>
+            <label for="email">Correo electrónico</label>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-floating">
+            <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+            <label for="contrasena">Contraseña</label>
+          </div>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-danger w-100 py-3" type="submit">Ingresar como Admin</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <%- include('../../partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidad</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <%- include('../partials/navbar', { usuario: usuario, projectName: projectName }) %>
+
+  <div class="container py-5">
+    <div class="text-center mb-5">
+      <h1 class="text-primary">Política de Privacidad</h1>
+    </div>
+
+    <div class="mb-4">
+      <h4>1. Información que recopilamos</h4>
+      <p>Recopilamos información personal como nombre, dirección de correo electrónico, y otra información que el usuario nos proporciona al registrarse en nuestra plataforma.</p>
+    </div>
+
+    <div class="mb-4">
+      <h4>2. Uso de la información</h4>
+      <p>Utilizamos la información recopilada para brindar nuestros servicios, personalizar la experiencia del usuario, procesar pagos y mejorar nuestro sitio web.</p>
+    </div>
+
+    <div class="mb-4">
+      <h4>3. Protección de datos</h4>
+      <p>Implementamos medidas de seguridad para proteger su información personal. Sin embargo, ningún método de transmisión por internet es 100% seguro.</p>
+    </div>
+
+    <div class="mb-4">
+      <h4>4. Cookies</h4>
+      <p>Este sitio utiliza cookies para mejorar la experiencia del usuario. El usuario puede configurar su navegador para rechazar las cookies.</p>
+    </div>
+
+    <div class="mb-4">
+      <h4>5. Derechos del usuario</h4>
+      <p>El usuario puede solicitar el acceso, corrección o eliminación de su información personal contactándonos directamente.</p>
+    </div>
+
+    <div class="mb-4">
+      <h4>6. Cambios en la política</h4>
+      <p>Nos reservamos el derecho de modificar esta política en cualquier momento. Las modificaciones estarán disponibles en esta misma página.</p>
+    </div>
+
+    <div class="mb-5">
+      <p>Si tienes preguntas sobre nuestra política de privacidad, contáctanos a <strong>privacidad@ejemplo.com</strong>.</p>
+    </div>
+  </div>
+
+  <%- include('../partials/footer') %>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

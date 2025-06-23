@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mis Cursos | Profesor</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <%- include("../../partials/navbar", { usuario }) %>
+
+  <div class="container py-5">
+    <div class="text-center mb-5">
+      <h1 class="text-primary">Mis Cursos como Profesor</h1>
+      <p class="lead">Estos son los cursos que estás impartiendo.</p>
+    </div>
+
+    <% if (cursos && cursos.length > 0) { %>
+      <div class="row g-4">
+        <% cursos.forEach(curso => { %>
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body text-center">
+                <h5 class="card-title"><%= curso.nombre %></h5>
+                <p class="card-text">Precio: Gs <%= curso.precio %></p>
+                <p class="card-text">
+                  Estrellas:
+                  <% for (let i = 0; i < curso.estrellas; i++) { %>
+                    <i class="fa fa-star text-warning"></i>
+                  <% } %>
+                </p>
+                <p class="card-text">
+                  Estado:
+                  <% if (curso.publicado === 'S') { %>
+                    <span class="badge bg-success">Publicado</span>
+                  <% } else { %>
+                    <span class="badge bg-secondary">No publicado</span>
+                  <% } %>
+                </p>
+                <a href="/auth/curso/<%= curso.id_curso %>" class="btn btn-outline-primary mt-2">Ver Curso</a>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <div class="alert alert-info text-center">
+        No estás asignado como profesor en ningún curso.
+      </div>
+    <% } %>
+  </div>
+
+  <%- include("../../partials/footer") %>
+</body>
+</html>

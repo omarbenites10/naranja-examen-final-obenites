@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Editar Usuario</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="container mt-5">
+    <h1>Editar Usuario</h1>
+    <a href="/admin/usuarios" class="btn btn-secondary mb-3">← Volver al listado</a>
+
+    <% if (error) { %>
+      <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+
+    <form action="/admin/usuarios/<%= usuario.email_usuario %>" method="POST">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          class="form-control"
+          value="<%= usuario.nombre %>"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="email_usuario" class="form-label">Email</label>
+        <input
+          type="email"
+          id="email_usuario"
+          name="email_usuario"
+          class="form-control"
+          value="<%= usuario.email_usuario %>"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="rol" class="form-label">Rol</label>
+        <select id="rol" name="rol" class="form-select" required>
+          <option value="alumno" <%= usuario.rol === 'E' ? 'selected' : '' %>>Alumno</option>
+          <option value="profesor" <%= usuario.rol === 'P' ? 'selected' : '' %>>Profesor</option>
+          <option value="admin" <%= usuario.rol === 'A' ? 'selected' : '' %>>Administrador</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="ci" class="form-label">CI</label>
+        <input
+          type="text"
+          id="ci"
+          name="ci"
+          class="form-control"
+          value="<%= usuario.ci %>"
+          required
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    </form>
+  </div>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

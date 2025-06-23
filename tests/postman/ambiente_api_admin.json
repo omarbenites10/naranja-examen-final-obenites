@@ -1,0 +1,24 @@
+{
+  "id": "ambiente-api-admin",
+  "name": "Ambiente API Admin",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "enabled": true
+    },
+    {
+      "key": "token",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "cursoId",
+      "value": "",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2025-06-08T13:36:31.651360",
+  "_postman_exported_using": "Postman"
+}

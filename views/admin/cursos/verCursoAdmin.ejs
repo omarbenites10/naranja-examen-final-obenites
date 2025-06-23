@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title><%= curso.nombre %> | Detalles del Curso</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <%- include('../../partials/navbar', { usuario }) %>
+
+  <div class="container mt-5">
+    <h1 class="mb-4"><%= curso.nombre %></h1>
+
+    <img src="/assets/cursos/<%= curso.imagen ? curso.imagen : 'generica.jpg' %>" alt="Imagen del curso" class="img-fluid mb-4" style="max-width: 300px;">
+
+    <p><strong>Precio:</strong> <%= curso.precio %> Gs</p>
+    <p><strong>Categoría:</strong> <%= curso.id_categoria %></p>
+    <p><strong>Estrellas:</strong>
+      <% for (let i = 0; i < curso.estrellas; i++) { %>
+        ⭐
+      <% } %>
+    </p>
+
+    <a href="/admin/cursos" class="btn btn-secondary mt-3">Volver al listado</a>
+
+    <a href="/admin/cursos/<%= curso.id_curso %>/editar" class="btn btn-warning mt-3">Editar Curso</a>
+
+  </div>
+
+    <%- include('../../partials/footer') %>
+
+  <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Dar de baja mi cuenta</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+
+  <div class="container mt-5">
+    <h2 class="mb-4 text-danger">¿Estás seguro de que querés darte de baja?</h2>
+
+    <% if (typeof error !== 'undefined' && error) { %>
+      <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+
+    <p>Si confirmás, tu cuenta será desactivada y no podrás volver a iniciar sesión.</p>
+
+    <form method="POST" action="/auth/baja-cuenta" onsubmit="return confirm('¿Estás completamente seguro de darte de baja? Esta acción no se puede deshacer.');">
+      <button class="btn btn-danger">Sí, quiero darme de baja</button>
+      <a href="/auth/home" class="btn btn-secondary ms-2">Cancelar</a>
+    </form>
+  </div>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>
